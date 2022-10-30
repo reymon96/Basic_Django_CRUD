@@ -1,4 +1,5 @@
 from ast import Try
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from . models import curso
 
@@ -18,6 +19,11 @@ def register(request):
     try:
         #Busquedo del Id en la BD
         find = curso.objects.get(codigo=codigo)
+        #Redireccion y muestra del id en uso
+        return HttpResponse('<script type="text/javascript">' + 
+                            'alert("El Código ya está en uso");' + 
+                            "location.href ='/'"
+                            '</script>')
     except:
         #creacion del objeto para el registro en BD si el Id es unico
         curso.objects.create(codigo = codigo, nombre = nombre, creditos = creditos)
@@ -30,10 +36,12 @@ def edit(request, codigo):
 def update(request):
     #recepcion de los datos enviados por el formulario
     ed_curso = curso.objects.get(codigo=request.POST['t_codigo'])
+    
     nombre = request.POST['t_nombre']
     creditos = request.POST['n_creditos']
     ed_curso.nombre = nombre
     ed_curso.creditos = creditos
+    #Guardar los cambios en la BD
     ed_curso.save()
     return redirect('/')
 
