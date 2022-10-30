@@ -1,0 +1,25 @@
+<h3>
+    Formulario de Registro
+</h3>
+<div class="card">
+    <div class="card-body">
+        <form action="registrarCurso/" method="post">
+            <!--Token para autorizacion-->
+            {% csrf_token %}
+            <div class="form-grup">
+                <input type="text" placeholder="Código" id="t_codigo" name="t_codigo" class="form-control" minlength="6" maxlength="6" required>
+            </div>
+            <div class="form-grup">
+                <input type="text" placeholder="Nombre del Curso" id="t_nombre" name="t_nombre" class="form-control" minlength="2" maxlength="50" required>
+            </div>
+            <div class="form-grup">
+                <input type="number" placeholder="Creditos" id="n_creditos" name="n_creditos" class="form-control" min="0" max="5" required>
+            </div>
+            <div class="form-grup">
+                <button type="submit" class="btn btn-succes btn-block text-bg-dark">
+                    AGREGAR
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

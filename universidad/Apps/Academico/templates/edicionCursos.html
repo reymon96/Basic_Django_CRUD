@@ -1,0 +1,58 @@
+{% extends './master.html' %}
+
+{% block body %}
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                <h3>
+                    Formulario de Edición
+                </h3>
+                <div class="card">
+                    <div class="card-body">
+                        <form action="update/" method="post">
+                            <!--Token para autorizacion-->
+                            {% csrf_token %}
+                            <div class="form-grup">
+                                <input type="text" id="t_codigo" name="t_codigo" class="form-control" minlength="6" maxlength="6" required value="{{curso.codigo}}" readonly>
+                            </div>
+                            <div class="form-grup">
+                                <input type="text" placeholder="{{curso.nombre}}" id="t_nombre" name="t_nombre" class="form-control" minlength="2" maxlength="50" required>
+                            </div>
+                            <div class="form-grup">
+                                <input type="number" placeholder="{{curso.creditos}}" id="n_creditos" name="n_creditos" class="form-control" min="0" max="5" required>
+                            </div>
+                            <div class="form-grup">
+                                <button type="submit" class="btn btn-succes btn-block text-bg-dark">
+                                    AGREGAR
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+                <div class="table-responsive py-2">
+                    <h1>
+                        Curso a editar
+                    </h1>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Créditos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{curso.codigo}}</td>
+                                <td>{{curso.nombre}}</td>
+                                <td>{{curso.creditos}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %} 
